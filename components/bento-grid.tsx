@@ -2,7 +2,7 @@
 
 import { motion, useInView } from "framer-motion"
 import { useRef, useEffect, useState } from "react"
-import { CreditCard, Workflow, Plug, Layers, ShieldCheck } from "lucide-react"
+import { FileSearch, FileText, Inbox, PenLine, Plug } from "lucide-react"
 
 const containerVariants = {
   hidden: {},
@@ -45,40 +45,6 @@ function SystemStatus() {
           transition={{ duration: 1, repeat: Number.POSITIVE_INFINITY, delay: i * 0.2 }}
         />
       ))}
-    </div>
-  )
-}
-
-function KeyboardCommand() {
-  const [pressed, setPressed] = useState(false)
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setPressed(true)
-      setTimeout(() => setPressed(false), 200)
-    }, 3000)
-    return () => clearInterval(interval)
-  }, [])
-
-  return (
-    <div className="flex items-center gap-2">
-      <div className="relative flex items-center gap-1">
-        <motion.kbd
-          animate={pressed ? { scale: 0.95, y: 2 } : { scale: 1, y: 0 }}
-          className="px-2 py-1 text-xs bg-zinc-800 border border-zinc-700 rounded text-zinc-300 font-mono"
-        >
-          Ctrl
-        </motion.kbd>
-        <motion.kbd
-          animate={pressed ? { scale: 0.95, y: 2 } : { scale: 1, y: 0 }}
-          transition={{ delay: 0.05 }}
-          className="px-2 py-1 text-xs bg-zinc-800 border border-zinc-700 rounded text-zinc-300 font-mono"
-        >
-          C
-        </motion.kbd>
-        <span className="absolute left-0 right-0 top-1/2 h-px -rotate-6 bg-emerald-500/80" aria-hidden="true" />
-      </div>
-      <span className="text-xs text-zinc-500">runs unattended</span>
     </div>
   )
 }
@@ -135,10 +101,10 @@ export function BentoGrid() {
             className="text-3xl sm:text-4xl font-bold text-white mb-4"
             style={{ fontFamily: "var(--font-instrument-sans)" }}
           >
-            Everything you need to ship
+            We build where you already work
           </h2>
           <p className="text-zinc-400 max-w-2xl mx-auto">
-            Built for modern teams. Powerful features that help you build, deploy, and scale faster than ever.
+            No new platform, no migration. We meet your operation inside the tools your team already opens every day.
           </p>
         </motion.div>
 
@@ -157,22 +123,22 @@ export function BentoGrid() {
             <div className="flex items-start justify-between mb-8">
               <div>
                 <div className="p-2 rounded-lg bg-zinc-800 w-fit mb-4">
-                  <CreditCard className="w-5 h-5 text-zinc-400" strokeWidth={1.5} />
+                  <FileSearch className="w-5 h-5 text-zinc-400" strokeWidth={1.5} />
                 </div>
-                <h3 className="text-xl font-semibold text-white mb-2">Payment Operations</h3>
+                <h3 className="text-xl font-semibold text-white mb-2">Contract analysis</h3>
                 <p className="text-zinc-400 text-sm max-w-md">
-                  Reconciliation that closes, webhooks that don&apos;t drop, retries that recover revenue. The money you
-                  process is the money you see.
+                  Read every contract. Miss nothing. Your team stops scanning 40-page agreements for the three clauses
+                  that matter. Contracts come back flagged, summarized, and ready to review.
                 </p>
               </div>
               <SystemStatus />
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               {[
-                { value: "100%", label: "reconciled" },
-                { value: "0", label: "manual entries" },
-                { value: "24/7", label: "running" },
-                { value: "<1h", label: "incident response" },
+                { value: "2 min", label: "per 40 pages" },
+                { value: "100%", label: "clauses checked" },
+                { value: "0", label: "missed renewals" },
+                { value: "24/7", label: "turnaround" },
               ].map((stat) => (
                 <div key={stat.label} className="text-center">
                   <div className="text-2xl font-bold text-white mb-1">{stat.value}</div>
@@ -188,14 +154,13 @@ export function BentoGrid() {
             className="group relative p-6 rounded-2xl bg-zinc-900 border border-zinc-800 hover:border-zinc-600 hover:scale-[1.02] transition-all duration-300"
           >
             <div className="p-2 rounded-lg bg-zinc-800 w-fit mb-4">
-              <Workflow className="w-5 h-5 text-zinc-400" strokeWidth={1.5} />
+              <FileText className="w-5 h-5 text-zinc-400" strokeWidth={1.5} />
             </div>
-            <h3 className="text-lg font-semibold text-white mb-2">Process Automation</h3>
-            <p className="text-zinc-400 text-sm mb-6">
-              Onboarding, KYC handoffs, reporting, alerts. The workflows your team runs by hand today, running on their
-              own tomorrow.
+            <h3 className="text-lg font-semibold text-white mb-2">Document summaries</h3>
+            <p className="text-zinc-400 text-sm">
+              The summary, not the stack. Long documents come back as the version your team actually needs to read. Key
+              points, risks, and numbers, pulled out and ready.
             </p>
-            <KeyboardCommand />
           </motion.div>
 
           {/* Integrations */}
@@ -204,11 +169,12 @@ export function BentoGrid() {
             className="group relative p-6 rounded-2xl bg-zinc-900 border border-zinc-800 hover:border-zinc-600 hover:scale-[1.02] transition-all duration-300"
           >
             <div className="p-2 rounded-lg bg-zinc-800 w-fit mb-4">
-              <Plug className="w-5 h-5 text-zinc-400" strokeWidth={1.5} />
+              <Inbox className="w-5 h-5 text-zinc-400" strokeWidth={1.5} />
             </div>
-            <h3 className="text-lg font-semibold text-white mb-2">Integrations</h3>
+            <h3 className="text-lg font-semibold text-white mb-2">Intake &amp; approvals</h3>
             <p className="text-zinc-400 text-sm mb-4">
-              Stripe, your bank, your CRM, your database — talking to each other instead of through your team.
+              Requests in. Approvals out. No more chasing sign-offs across inboxes. Requests route themselves, approvals
+              happen on time, and nothing sits forgotten in someone&apos;s folder.
             </p>
             <AnimatedChart />
           </motion.div>
@@ -219,16 +185,16 @@ export function BentoGrid() {
             className="group relative p-6 rounded-2xl bg-zinc-900 border border-zinc-800 hover:border-zinc-600 hover:scale-[1.02] transition-all duration-300"
           >
             <div className="p-2 rounded-lg bg-zinc-800 w-fit mb-4">
-              <Layers className="w-5 h-5 text-zinc-400" strokeWidth={1.5} />
+              <PenLine className="w-5 h-5 text-zinc-400" strokeWidth={1.5} />
             </div>
-            <h3 className="text-lg font-semibold text-white mb-2">Phase 2 Development</h3>
+            <h3 className="text-lg font-semibold text-white mb-2">Clause &amp; document drafting</h3>
             <p className="text-zinc-400 text-sm mb-4">
-              New features on top of what already exists. Built by a team, a no-code stack, or an AI — we work with it,
-              not against it.
+              First drafts in minutes. Standard clauses, letters, and documents, drafted from your own templates and
+              language. Your team edits instead of starting from a blank page.
             </p>
             <div className="flex items-center gap-2 text-emerald-500 text-sm">
-              <span className="font-mono">+ build on top</span>
-              <span className="text-zinc-500">no rewrites</span>
+              <span className="font-mono">~2 min</span>
+              <span className="text-zinc-500">to first draft</span>
             </div>
           </motion.div>
 
@@ -238,16 +204,18 @@ export function BentoGrid() {
             className="group relative p-6 rounded-2xl bg-zinc-900 border border-zinc-800 hover:border-zinc-600 hover:scale-[1.02] transition-all duration-300"
           >
             <div className="p-2 rounded-lg bg-zinc-800 w-fit mb-4">
-              <ShieldCheck className="w-5 h-5 text-zinc-400" strokeWidth={1.5} />
+              <Plug className="w-5 h-5 text-zinc-400" strokeWidth={1.5} />
             </div>
-            <h3 className="text-lg font-semibold text-white mb-2">Compliance-aware by default</h3>
+            <h3 className="text-lg font-semibold text-white mb-2">Integrations</h3>
             <p className="text-zinc-400 text-sm mb-4">
-              We build with audits in mind: traceable workflows, access control, and data that knows where it lives.
+              Everything, where you already work. All of this lives inside the tools your team opens every morning. No
+              new platform, no migration, nothing to relearn.
             </p>
             <div className="flex flex-wrap items-center gap-2">
-              <span className="px-2 py-1 text-xs bg-zinc-800 rounded text-zinc-400">PSD2</span>
-              <span className="px-2 py-1 text-xs bg-zinc-800 rounded text-zinc-400">GDPR</span>
-              <span className="px-2 py-1 text-xs bg-zinc-800 rounded text-zinc-400">audit trails</span>
+              <span className="px-2 py-1 text-xs bg-zinc-800 rounded text-zinc-400">Microsoft 365</span>
+              <span className="px-2 py-1 text-xs bg-zinc-800 rounded text-zinc-400">Power BI</span>
+              <span className="px-2 py-1 text-xs bg-zinc-800 rounded text-zinc-400">SharePoint</span>
+              <span className="px-2 py-1 text-xs bg-zinc-800 rounded text-zinc-400">Outlook</span>
             </div>
           </motion.div>
         </motion.div>
