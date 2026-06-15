@@ -52,7 +52,7 @@ export function Hero() {
         >
           <span className="block overflow-hidden">
             <motion.span className="block" variants={textRevealVariants} initial="hidden" animate="visible" custom={0}>
-              You ship.
+              Scale your operation.
             </motion.span>
           </span>
           <span className="block overflow-hidden">
@@ -63,7 +63,7 @@ export function Hero() {
               animate="visible"
               custom={1}
             >
-              We settle.
+              Move faster.
             </motion.span>
           </span>
         </h1>
@@ -75,7 +75,8 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.5 }}
           className="text-lg sm:text-xl text-zinc-400 max-w-2xl mx-auto mb-10 leading-relaxed"
         >
-          Bridging the gap between what exists and what&apos;s possible.
+          Do more without hiring more. Even when your processes are scattered across a dozen tools and held together
+          by hand. We adapt to your operation, not the other way around.
         </motion.p>
 
         {/* CTAs */}
